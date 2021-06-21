@@ -1,0 +1,124 @@
+{%  extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div id="contact" class="contact-us section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
+          <form id="contactwe" action="" method="post">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="contactwe-info">
+                  <img  src="{%  static 'assets/images/banner-right-image.png' %}" alt="">
+                </div>
+                  <label for="file">Rasmiy suratingizni yuklang</label>
+                  <input style="width: 140px; border: 0;" type="file" id="file" name="file" multiple>
+              </div>
+              <div class="col-lg-6">
+                <div class="section-heading">
+                  <h2>Abdullayev Abdulla Abdullayevich</h2>
+                </div>
+              </div>
+              
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="col-lg-3 col-md-6 mt-2">
+                    <fieldset>
+                      <select name="plan" id="plan">
+                        <option value="none"  selected disabled hidden >Daraja </option>
+                        <option value="free">Fan doktori</option>
+                        <option value="starter">Fan nomzodi </option>
+                        <option value="starter">Magistr</option>
+                        <option value="starter">Bakalavr</option>
+                        <option value="professional">-</option>
+                    </select>
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-3 col-md-6 mt-2">
+                    <fieldset>
+                      <select name="plan" id="plan">
+                        <option value="none"  selected disabled hidden >Unvon </option>
+                        <option value="free">Professor</option>
+                        <option value="starter">Dotsent</option>
+                        <option value="corporate">Katta o'qituvchi</option>
+                        <option value="corporate">Asissent</option>
+                        <option value="professional">-</option>
+                    </select>
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-3 col-md-6 mt-2">
+                    <fieldset>
+                      <select name="plan" id="plan">
+                        <option value="none"  selected disabled hidden >Fakultet </option>
+                        <option value="free">Kompyuter injiniring</option>
+                        <option value="starter">Telekomunikatsiya injiniring</option>
+                    </select>
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-3 col-md-6 mt-2">
+                    <fieldset>
+                      <select name="plan" id="plan">
+                        <option value="none"  selected disabled hidden >Kafedra </option>
+                        <option value="free">Dasturiy injiniring</option>
+                        <option value="starter">Kompyuter tizimlari</option>
+                        <option value="professional">Axborot texnologiyalar</option>
+                        <option value="corporate">Telekomunikatsiya injiniring</option>
+                        <option value="corporate">Axborot ta'lim texnologiyalar</option>
+                        <option value="corporate">Axborot xafsizligi</option>
+                        <option value="corporate">Gumanitar fanlar</option>
+                        <option value="corporate">Tabiiy fanlar</option>
+                        <option value="corporate">Tillar va jismoniy ma'daniyat</option>
+                    </select>
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-6 mt-4">
+                    <label for="file">Xorijiy jurnallar va konfrensiyalarda chop etilgan maqola</label>
+                    <input type="file" id="file" name="file" multiple>
+                  </div>
+                  <div class="col-lg-6 mt-4">
+                    <label for="file">Respublika jurnalar va konfrensiyalarda chop etilgan maqola</label>
+                    <input type="file" id="file" name="file" multiple>
+                  </div>
+                  <div class="col-lg-6">
+                    <label for="file">Dasturiy guvohnomalar</label>
+                    <input type="file" id="file" name="file" multiple>
+                  </div>
+                  <div class="col-lg-6">
+                    <label for="file">Xo'jalik shartnomalar</label>
+                    <input type="file" id="file" name="file" multiple>
+                  </div>
+                  <div class="col-lg-6">
+                    <label for="file">Tanlovlarda ishtiroki</label>
+                    <input type="file" id="file" name="file" multiple>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <!-- <input type="checkbox" id="show"> -->
+                      <button id="show">Malumotlarni saqlash</button>
+                    </fieldset>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div for="show" class="modal">
+    <form for="show" action="" class="wer">
+      <div for="show" style="float: right;"><a href=""><img style="width: 20px; height: 20px;" src="{%  static './assets/images/window-close-solid.svg' %}" alt=""></a></div>
+      <div for="show" class="input_fields_wrap">
+        <div class="col-lg-12 p-3">
+          <label for="show" class="add_field_label" for="file" id="file" >Shartnoma nomi</label>
+          <input type="text" id="file"  name="mytext[]">
+          <input class="add_field_input" type="file" id="file" name="file" multiple>
+          <button class="add_field_button">Add More Fields</button>
+        </div>
+    </div>
+    </form>
+  </div>
+ 
+{% endblock %}

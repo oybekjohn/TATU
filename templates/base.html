@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+        <title>Muhammad al-Xorazmiy nomidagi Toshkent axborot texnologiyalar universiteti Samarqand filiali ilmiy salohiyati</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="{%  static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+
+        <!-- Additional CSS Files -->
+        <link rel="stylesheet" href="{%  static 'assets/css/fontawesome.css' %}">
+        <link rel="stylesheet" href="{%  static 'assets/css/templatemo-seo-dream.css' %}">
+        <link rel="stylesheet" href="{%  static 'assets/css/animated.css' %}">
+        <link rel="stylesheet" href="{%  static 'assets/css/owl.css' %}">
+    </head>
+
+    <body>
+        <!-- ***** Preloader Start ***** -->
+        <div id="js-preloader" class="js-preloader">
+        <div class="preloader-inner">
+            <span class="dot"></span>
+            <div class="dots">
+            <span></span>
+            <span></span>
+            <span></span>
+            </div>
+        </div>
+        </div>
+        <!-- ***** Preloader End ***** -->
+    
+        <!-- ***** Header Area Start ***** -->
+        <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+            <div class="container">
+                <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="{%  static 'index.html' %}" class="logo">
+                        <h4><img src="{%  static 'assets/images/logo-icon.png' %}" alt="">Portfolio</h4>
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li class="scroll-to-section"><a href="#top" class="active">Filial</a></li>
+                        <li class="scroll-to-section"><div class="dropdown">
+                        <a class="dropbtn">Kafedralar</a>
+                        <div class="dropdown-content">
+                            <a href="{%  static 'cafe.html' %}">Dasturiy injiniring kafedrasi</a>
+                            <a href="#">Kompyuter tizimlari kafedrasi</a>
+                            <a href="#">Axborot texnologiyalari kafedrasi</a>
+                            <a href="#">Telikomunikatsiya injinering kafedrasi</a>
+                            <a href="#">Kompyuter tizimlari kafedrasi</a>
+                            <a href="#">Axborot xafsizligi kafedrasi</a>
+                            <a href="#">Tillar va jismoniy ma'daniyat kafedrasi</a>
+                            <a href="#">Tabiiy fanlar kafedrasi</a>
+                            <a href="#">Gumanitar fanlar kafedrasi</a>
+                        </div>
+                        </div>
+                        </li>
+                        <li class="scroll-to-section"><div class="dropdown">
+                        <a class="dropbtn">Fan doktorlari</a>
+                        <div class="dropdown-content">
+                            <a href="#">Professor</a>
+                            <a href="#">Dotsent</a>
+                        </div>
+                        </div>
+                        </li>
+                        <li class="scroll-to-section"><div class="dropdown">
+                        <a class="dropbtn">Falsafa doktorlari</a>
+                        <div class="dropdown-content">
+                            <a href="#">Professor</a>
+                            <a href="#">Dotsent</a>
+                            <a href="#">Unvonga ega emas</a>
+                        </div>
+                        </div>
+                        </li>
+                        <li class="scroll-to-section"><a href="#portfolio">O'qituvchilar</a></li>
+                        <li class="scroll-to-section"><a href="#contact">Iqtidorli talabalar</a></li> 
+                        <li class="scroll-to-section">
+                        <div class="main-blue-button">
+                            <a style="color: aliceblue;" href="{%  static 'login.html' %}">Kirish</a>
+                        </div>
+                        </li> 
+                    </ul>        
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+                </div>
+            </div>
+        </header>
+        <!-- ***** Header Area End ***** -->
+
+        {% block content %}
+
+
+
+        {% endblock content %}
+        
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                    <li>Admin</li>
+                    </div>
+                    <div class="col-lg-6">
+                    <li>+998979291800</li>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="{%  static 'vendor/jquery/jquery.min.js' %}"></script>
+        <script src="{%  static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{%  static 'assets/js/owl-carousel.js' %}"></script>
+        <script src="{%  static 'assets/js/animation.js' %}"></script>
+        <script src="{%  static 'assets/js/imagesloaded.js' %}"></script>
+        <script src="{%  static 'assets/js/custom.js' %}"></script>
+
+
+        <script>
+            $(document).ready(function() {
+            var max_fields      = 50; //maximum input boxes allowed
+            var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
+            var add_button      = $(".add_field_button"); //Add button ID
+            var add_input       =$(".add_field_input");
+            var add_input       =$(".add_field_label");
+            
+            var x = 1; //initlal text box count
+            $(add_button).click(function(e){ //on add input button click
+                e.preventDefault();
+                if(x < max_fields){ //max input box allowed
+                    x++; //text box increment
+                    $(wrapper).append('<div style="padding:10px"><label style="margin-right: 10px" for="file" id="file" >Shartnoma nomi</label><input type="text" name="mytext[]"/><input type="file" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+                }
+            });
+            
+            $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+                e.preventDefault(); $(this).parent('div').remove(); x--;
+            })
+        });
+        </script>
+
+
+    </body>
+</html>
