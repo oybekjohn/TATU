@@ -18,7 +18,11 @@
               </div>
               <div class="col-lg-6">
                 <div class="section-heading">
-                  <h2>Abdullayev Abdulla Abdullayevich</h2>
+                  {% if user.is_authenticated %}
+                  <h2>{{ user }} salom</h2>
+                  {% else %}
+                  <h2>anonym</h2>
+                  {% endif %}
                 </div>
               </div>
               

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-9v!i2c3c$069pyz!5jbrk57ah^9&kfqc)gbz#ts3zthuu%%p6@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -81,7 +81,17 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'udemyuz',
+    #     'USER': 'postgres',
+    #     'PASSWORD': '123',
+    #     'HOST': 'localhost',
+    #     'PORT': '5432',
+    # }
+
 }
 
 
@@ -116,6 +126,11 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+
+LOGIN_REDIRECT_URL = "account"
+LOGOUT_REDIRECT_URL = "index"
 
 
 # Static files (CSS, JavaScript, Images)
