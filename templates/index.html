@@ -9,24 +9,30 @@
         <div class="row">
           <div class="col-lg-6 align-self-center">
             <div class="left-content header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+            
               <div class="row">
                 <div class="col-lg-12">
-                  <h4>Professor</h4>
+                  <h4>{{ random_teacher.unvon.title }}</h4>
                 </div>
                 <div class="col-lg-12">
-                  <h2>Abdullayev Abdulla Abdullayevich</h2>
+                  <h2>{{ random_teacher.user.first_name }} {{ random_teacher.user.last_name  }} {{ random_teacher.middle_name }}</h2>
                 </div>
                 <div class="col-lg-12">
                   <div class="main-green-button scroll-to-section">
-                    <a href="{% url 'batafsil' %}">Batafsil...</a>
+                    <a href="{% url 'batafsil' pk=random_teacher.pk %}">Batafsil...</a>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
           <div class="col-lg-6">
             <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+            {% if random_teacher.image %}
+              <img src="{{ random_teacher.image.url }}" alt="">
+            {% else %}
               <img src="{%  static 'assets/images/banner-right-image.png' %}" alt="">
+            {% endif %}
             </div>
           </div>
         </div>
@@ -46,24 +52,28 @@
   </div>
   <div class="container-fluid">
     <div class="row">
+
+      {% for ustoz in teacher %}
       <div class="col-lg-4">
         <div class="service-item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.4s">
           <div class="row">
             <div class="col-lg-4">
               <div class="icon">
-                <img src="{%  static 'assets/images/banner-right-image.png' %}" alt="">
+                <img src="{{ ustoz.image.url}}" alt="">
               </div>
             </div>
             <div class="col-lg-8">
               <div class="right-content">
-                <h4>Abdullayev Abdulla</h4>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dormque laudantium.</p>
+                <h4>{{ ustoz.user.first_name }} {{ ustoz.user.last_name  }} {{ ustoz.middle_name }}</h4>
+                <p>{{ ustoz.informaton }}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-4">
+      {% endfor %}
+
+      {% comment %} <div class="col-lg-4">
         <div class="service-item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.4s">
           <div class="row">
             <div class="col-lg-4">
@@ -147,7 +157,8 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> {% endcomment %}
+
     </div>
   </div>
 </div>

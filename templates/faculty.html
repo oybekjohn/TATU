@@ -8,115 +8,53 @@
     <div class="row">
       <div class="col-lg-6 offset-lg-3">
         <div class="section-heading wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
-          <h6>Dasturiy injiniring kafedrasi</h6>
+          <h6>{{  }}</h6>
         </div>
       </div>
     </div>
   </div>
   <div class="container-fluid">
     <div class="row">
+      {% for ustoz in teacher %}
+      {% if ustoz.fakultet.title%}
       <div class="col-lg-4">
         <div class="service-item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.4s">
           <div class="row">
             <div class="col-lg-4">
               <div class="icon">
-                <img src="{%  static 'assets/images/banner-right-image.png' %}" alt="">
+                <img src="{{ ustoz.image.url}}" alt="">
               </div>
             </div>
             <div class="col-lg-8">
               <div class="right-content">
-                <h4>Abdullayev Abdulla</h4>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dormque laudantium.</p>
+                <h4>{{ ustoz.user.first_name }} {{ ustoz.user.last_name  }} {{ ustoz.middle_name }}</h4>
+                <p>{{ ustoz.informaton }}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <div class="col-lg-4">
         <div class="service-item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.4s">
           <div class="row">
             <div class="col-lg-4">
               <div class="icon">
-                <img src="{%  static 'assets/images/banner-right-image.png' %}" alt="">
+                <img src="{{ ustoz.image.url}}" alt="">
               </div>
             </div>
             <div class="col-lg-8">
               <div class="right-content">
-                <h4>Abdullayev Abdulla</h4>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dormque laudantium.</p>
+                <h4>{{ ustoz.user.first_name }} {{ ustoz.user.last_name  }} {{ ustoz.middle_name }}</h4>
+                <p>{{ ustoz.informaton }}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-4">
-        <div class="service-item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.5s">
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="icon">
-                <img src="{%  static 'assets/images/banner-right-image.png' %}" alt="">
-              </div>
-            </div>
-            <div class="col-lg-8">
-              <div class="right-content">
-                <h4>Abdullayev Abdulla</h4>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dormque laudantium.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="service-item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.6s">
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="icon">
-                <img src="{%  static 'assets/images/banner-right-image.png' %}" alt="">
-              </div>
-            </div>
-            <div class="col-lg-8">
-              <div class="right-content">
-                <h4>Abdullayev Abdulla</h4>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dormque laudantium.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="service-item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.7s">
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="icon">
-                <img src="{%  static 'assets/images/banner-right-image.png' %}" alt="">
-              </div>
-            </div>
-            <div class="col-lg-8">
-              <div class="right-content">
-                <h4>Abdullayev Abdulla</h4>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dormque laudantium.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="service-item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.7s">
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="icon">
-                <img src="{%  static 'assets/images/banner-right-image.png' %}" alt="">
-              </div>
-            </div>
-            <div class="col-lg-8">
-              <div class="right-content">
-                <h4>Abdullayev Abdulla</h4>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dormque laudantium.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% endif %}
+      {% endfor %}
+      
     </div>
   </div>
 </div>

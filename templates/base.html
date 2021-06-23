@@ -50,19 +50,13 @@
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li class="scroll-to-section"><a href="{% url 'index' %}" class="active">Filial</a></li>
+                        <li class="scroll-to-section"><a href="{% url 'index' %}">Filial</a></li>
                         <li class="scroll-to-section"><div class="dropdown">
                         <a class="dropbtn">Kafedralar</a>
                         <div class="dropdown-content">
-                            <a href="{% url 'faculty' %}">Dasturiy injiniring kafedrasi</a>
-                            <a href="#">Kompyuter tizimlari kafedrasi</a>
-                            <a href="#">Axborot texnologiyalari kafedrasi</a>
-                            <a href="#">Telikomunikatsiya injinering kafedrasi</a>
-                            <a href="#">Kompyuter tizimlari kafedrasi</a>
-                            <a href="#">Axborot xafsizligi kafedrasi</a>
-                            <a href="#">Tillar va jismoniy ma'daniyat kafedrasi</a>
-                            <a href="#">Tabiiy fanlar kafedrasi</a>
-                            <a href="#">Gumanitar fanlar kafedrasi</a>
+                            {% for kafedra in kafedralar %}
+                            <a href="{% url 'faculty' pk=kafedra.pk%}">{{ kafedra.title }}</a>
+                            {% endfor %}
                         </div>
                         </div>
                         </li>
@@ -139,8 +133,13 @@
             var max_fields      = 50; //maximum input boxes allowed
             var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
             var add_button      = $(".add_field_button"); //Add button ID
-            var add_input       =$(".add_field_input");
-            var add_input       =$(".add_field_label");
+            var add_input       = $(".add_field_input");
+            var add_input       = $(".add_field_label");
+
+            var file_from       = $(".file_from")
+            var saqlash_btn     = $("#saqlash_btn");
+            var add_clone       = $(".add_clone");
+            var clone_form      = $(".clone_form");
             
             var x = 1; //initlal text box count
             $(add_button).click(function(e){ //on add input button click
@@ -154,7 +153,21 @@
             $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
                 e.preventDefault(); $(this).parent('div').remove(); x--;
             })
-        });
+
+            file_from.on('click',function(e) { 
+                 e.preventDefault()
+                window.location = '{% url "account_form"%}'
+            })
+
+            saqlash_btn.on("click" , function (e) {
+                e.preventDefault()
+                window.location = '{% url "account"%}'
+            })
+
+            add_clone.on("click" , function(e) {
+                e.preventDefault()
+                clone_form.clone().insertAfter( clone_form );
+            }) 
         </script>
 
 
