@@ -16,14 +16,29 @@ from .models import (
 
 
 def index(request):
-    Teacher = TeacherData.objects.all()
-    rand_num = random.randint(0, TeacherData.objects.count()-2)
+    Teacher        = TeacherData.objects.all()
+    rand_num       = random.randint(0, TeacherData.objects.count()-2)
     random_teacher = TeacherData.objects.get(pk=2)
-    kaferda = Kafedra.objects.all()
+    kaferda        = Kafedra.objects.all()
+
+    teacher_number           = TeacherData.objects.count()
+    teacher_number_professor = Unvon.objects.filter(title="Professor").count()
+    teacher_number_big       = Unvon.objects.filter(title="Katta o'qituvchi").count()
+
+    maqola_number       = XalqaroMaqolalar.objects.count() + MahalliyMaqolalar.objects.count()
+    guvohnoma_number    = Guvohnomalar.objects.count()
+    shartnomalar_number = Shartnomalar.objects.count()
+
     context = {
-        'teacher': Teacher,
-        'random_teacher': random_teacher,
-        'kafedralar': kaferda,
+        'teacher':             Teacher,
+        'random_teacher':      random_teacher,
+        'kafedralar':          kaferda,
+        'teacher_number':      teacher_number,
+        'teacher_number_professor': teacher_number_professor,
+        'teacher_number_big':  teacher_number_big,
+        'maqola_number':       maqola_number,
+        'guvohnoma_number':    guvohnoma_number,
+        'shartnomalar_number': shartnomalar_number
     }
     return render(request, 'index.html', context)
 
