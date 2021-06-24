@@ -1953,7 +1953,7 @@ footer{
   position: relative;
   background-color: rgba(0, 160, 160, 0.76);
   height: 120px;
-  top: 15px;
+  /* top: 15px; */
   bottom: 0;
   z-index: 1;
 }

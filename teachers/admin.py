@@ -1,10 +1,12 @@
 from django.contrib import admin
 from .models import (
-                    Daraja, XalqaroMaqolalar,
-                    Unvon, MahalliyMaqolalar,
-                    Fakultet, Guvohnomalar,
-                    Kafedra, Shartnomalar,
-                    TeacherData, Tanlovlar,                    
+                    Daraja,
+                    Unvon, 
+                    Fakultet, 
+                    Kafedra,
+                    FileType,
+                    TeacherFile, 
+                    TeacherData,                  
                     )
 
 
@@ -13,10 +15,8 @@ admin.site.register(Unvon)
 admin.site.register(Fakultet)
 admin.site.register(Kafedra)
 
-admin.site.register(XalqaroMaqolalar)
-admin.site.register(MahalliyMaqolalar)
-admin.site.register(Guvohnomalar)
-admin.site.register(Shartnomalar)
-admin.site.register(Tanlovlar)
+admin.site.register(FileType)
+
+admin.site.register(TeacherFile)
 
 admin.site.register(TeacherData)

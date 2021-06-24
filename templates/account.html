@@ -3,11 +3,13 @@
 
 {% block content %}
 
-  <div id="contact" class="contact-us section">
-    <div class="container">
+  <div id="contact" class="contact-us section pb-0">
+    <div class="container" style="min-height: 700px;">
       <div class="row">
         <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
-          <form id="contactwe" action="" method="post">
+
+          <form id="contactwe" action="{% url 'account' %}" method="post">
+          {% csrf_token %}
             <div class="row">
               <div class="col-lg-6">
                 <div class="contactwe-info">
@@ -18,7 +20,7 @@
                 {% endif %}
                 </div>
                   <label for="file">Rasmiy suratingizni yuklang </label>
-                  <input style="width: 140px; border: 0;" type="file" id="file" name="file" multiple>
+                  {% comment %} <input style="width: 140px; border: 0;" type="file" id="file" name="file" multiple> {% endcomment %}
               </div>
               <div class="col-lg-6">
                 <div class="section-heading">
@@ -29,10 +31,16 @@
                   {% endif %}
                 </div>
               </div>
-              
               <div class="col-lg-12">
                 <div class="row">
-                  <div class="col-lg-3 col-md-6 mt-2">
+
+                <div class="col-lg-12">
+                <div class="row">
+                  {{form}} 
+                </div>
+                </div>
+
+                  {% comment %} <div class="col-lg-3 col-md-6 mt-2">
                     <fieldset>
                       <select name="plan" id="plan">
                         <option value="none"  selected disabled hidden >Daraja </option>
@@ -44,6 +52,7 @@
                     </select>
                     </fieldset>
                   </div>
+
                   <div class="col-lg-3 col-md-6 mt-2">
                     <fieldset>
                       <select name="plan" id="plan">
@@ -56,6 +65,7 @@
                     </select>
                     </fieldset>
                   </div>
+
                   <div class="col-lg-3 col-md-6 mt-2">
                     <fieldset>
                       <select name="plan" id="plan">
@@ -65,6 +75,7 @@
                     </select>
                     </fieldset>
                   </div>
+
                   <div class="col-lg-3 col-md-6 mt-2">
                     <fieldset>
                       <select name="plan" id="plan">
@@ -80,37 +91,32 @@
                         <option value="corporate">Tillar va jismoniy ma'daniyat</option>
                     </select>
                     </fieldset>
-                  </div>
-                  <div class="col-lg-6 mt-4">
-                    <label for="file">Xorijiy jurnallar va konfrensiyalarda chop etilgan maqola</label>
-                    <input type="file" class="file_from" name="file">
-                  </div>
-                  <div class="col-lg-6 mt-4">
-                    <label for="file">Respublika jurnalar va konfrensiyalarda chop etilgan maqola</label>
-                    <input type="file" class="file_from" name="file">
-                  </div>
-                  <div class="col-lg-6">
-                    <label for="file">Dasturiy guvohnomalar</label>
-                    <input type="file" class="file_from" name="file">
-                  </div>
-                  <div class="col-lg-6">
-                    <label for="file">Xo'jalik shartnomalar</label>
-                    <input type="file" class="file_from" name="file">
-                  </div>
-                  <div class="col-lg-6">
-                    <label for="file">Tanlovlarda ishtiroki</label>
-                    <input type="file" class="file_from" name="file">
-                  </div>
-                  <div class="col-lg-12">
-                    <fieldset>
+                  </div> {% endcomment %}
+
+                  <div class="col-lg-12 mt-4 row">
+                    <div class="col-lg-6 mt-4">
+                      <button id="show"> <a href="{% url 'account_form' %}"><b> Yangi fayl qo'shish</b> </a> </button>                 
+                    </div>
+                    <div class="col-lg-6">
+                      <p>Mavjud maqola</p>
+                      <div class="clone_form"> 
+                      
+                        <label type="text"><b>Xalqaro Maqolalar:</b></label> mafsdkvkdaskdsmf dksmfvaklsdm <br>
+                        <label type="text"><b>Mahalliy Maqolalar:</b></label> mafsdkvkdaskdsmf dksmfvaklsdm <br>
+                        <label type="text"><b>Guvohnomalar:</b></label> mafsdkvkdaskdsmf dksmfvaklsdm <br>
+                        <label type="text"><b>Shartnomalar:</b></label> mafsdkvkdaskdsmf dksmfvaklsdm <br>
+                        <label type="text"><b>Tanlovlar:</b></label> mafsdkvkdaskdsmf dksmfvaklsdm <br>
+                      </div>
+                    </div>
+                    <fieldset class="col-12">
                       <!-- <input type="checkbox" id="show"> -->
-                      <button id="show">Malumotlarni saqlash</button>
+                      <button type="submit" id="show">Malumotlarni saqlash</button> 
                     </fieldset>
-                  </div>
                 </div>
               </div>
             </div>
           </form>
+
         </div>
       </div>
     </div>

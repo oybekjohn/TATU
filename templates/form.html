@@ -3,42 +3,32 @@
 
 {% block content %}
 
-  <div id="contact" class="contact-us section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
-          <form id="contactwe" action="" method="post" style="border-color: bisque; border: 2px;">
-             <div class="row">
-              <div class="col-lg-12">
-                <div class="row">
-                  <div class="col-lg-12 col-md-6 mt-2 " >
-                    <p>Maqola nomi</p>
-                    <div class="clone_form"> 
-                     <input type="text" placeholder="Maqola nomi">
-                     <input type="file">
-                    </div>
-                    <button class="add_clone" style="width: 40px; height: 40px; text-align: center;align-items: center;">+</button>
-                    <button id="saqlash_btn">Saqlash</button>
+<div id="contact" class="contact-us section pb-0">
+  <div class="container" style="min-height: 700px;">
+    <div class="row">
+      <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
+
+        <form id="contactwe" action="{% url 'account' %}" method="POST" style="border-color: bisque; border: 2px;">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-12 col-md-12 mt-2 " >
+                  <h3>Maqola nomi</h3>
+    
+                        {{form}}
+                   
                   </div>
+                  <button type='submit' id="saqlash_btn">Saqlash</button>
                 </div>
               </div>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
+
       </div>
     </div>
   </div>
-  <div for="show" class="modal">
-        <form for="show" action="" class="wer">
-          <div for="show" style="float: right;"><a href=""><img style="width: 20px; height: 20px;" src="{%  static './assets/images/window-close-solid.svg' %}" alt=""></a></div>
-          <div for="show" class="input_fields_wrap">
-            <div class="col-lg-12 p-3">
-              <label for="show" class="add_field_label" for="file" id="file" >Shartnoma nomi</label>
-              <input type="text" id="file"  name="mytext[]">
-              <input class="add_field_input" type="file" id="file" name="file" multiple>
-              <button class="add_field_button">Add More Fields</button>
-            </div>
-        </div>
-        </form>
-  </div>
+</div>
+
 {% endblock %}

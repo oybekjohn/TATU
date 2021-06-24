@@ -3,31 +3,31 @@ import random
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth.decorators import login_required
 
 from .models import (
-                    Daraja, XalqaroMaqolalar,
-                    Unvon, MahalliyMaqolalar,
-                    Fakultet, Guvohnomalar,
-                    Kafedra, Shartnomalar,
-                    TeacherData, Tanlovlar,                    
+                    Daraja,
+                    Unvon, 
+                    Fakultet, 
+                    Kafedra,
+                    FileType,
+                    TeacherFile,         
+                    TeacherData,                    
                     )
-
+from .forms import TeacherFileForm, TeacherDataForm
 
 def index(request):
     Teacher        = TeacherData.objects.all()
-    rand_num       = random.randint(0, TeacherData.objects.count()-2)
-    random_teacher = TeacherData.objects.get(pk=2)
+    random_teacher = TeacherData.objects.get(pk=1)
     kaferda        = Kafedra.objects.all()
 
     teacher_number           = TeacherData.objects.count()
     teacher_number_professor = Unvon.objects.filter(title="Professor").count()
     teacher_number_big       = Unvon.objects.filter(title="Katta o'qituvchi").count()
 
-    maqola_number       = XalqaroMaqolalar.objects.count() + MahalliyMaqolalar.objects.count()
-    guvohnoma_number    = Guvohnomalar.objects.count()
-    shartnomalar_number = Shartnomalar.objects.count()
+    # maqola_number       = XalqaroMaqolalar.objects.count() + MahalliyMaqolalar.objects.count()
+    # guvohnoma_number    = Guvohnomalar.objects.count()
+    # shartnomalar_number = Shartnomalar.objects.count()
 
     context = {
         'teacher':             Teacher,
@@ -36,9 +36,9 @@ def index(request):
         'teacher_number':      teacher_number,
         'teacher_number_professor': teacher_number_professor,
         'teacher_number_big':  teacher_number_big,
-        'maqola_number':       maqola_number,
-        'guvohnoma_number':    guvohnoma_number,
-        'shartnomalar_number': shartnomalar_number
+        # 'maqola_number':       maqola_number,
+        # 'guvohnoma_number':    guvohnoma_number,
+        # 'shartnomalar_number': shartnomalar_number
     }
     return render(request, 'index.html', context)
 
@@ -68,17 +68,45 @@ def faculty(request, pk):
 @login_required
 def account(request):
     user_data = TeacherData.objects.get(user_id=request.user.id)
+    if request.method == 'POST':
+        form=TeacherDataForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.save()
+    else:
+        form = TeacherDataForm()
     kaferda = Kafedra.objects.all()
     context = {
-        'user_data': user_data,
+        'user_data' : user_data,
         'kafedralar': kaferda,
+        'form'      : form,
     }
     return render(request, 'account.html', context)
     
 
+
 @login_required
 def account_form(request):
-    return render(request, 'form.html',)
+    if request.method== "POST":
+        form=TeacherFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form = form.save(commit=False)
+            teacher = TeacherData.objects.get(user_id=request.user.id)
+            form.teacher_id = teacher.id
+            form.save()
+            # instance = TeacherFile( title=request.POST['title'], file=request.FILES['file'], type=request.POST['type'], teacher_id=request.user)
+            # instance.save()
+    else:
+        form = TeacherFileForm()
+
+    choice = TeacherFile.objects.all()
+    context = {
+        'choice': choice,
+        'form': form,
+    }
+    return render(request, 'form.html', context)
+
+
 
 
 def login_view(request):
@@ -96,3 +124,27 @@ def login_view(request):
             return render(request, 'registration/login.html',)
     form = AuthenticationForm()
     return render(request, 'registration/login.html', {'form': form})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# file = form.save(commit=False)
+#             TeacherFile.teacher_id = request.user
+#             file.save()

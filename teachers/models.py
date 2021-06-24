@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
-from django.contrib.auth.models import AbstractUser
-from .managers import CustomUserManager
+
 
 from django.db import models
 
@@ -53,79 +52,28 @@ class Kafedra(models.Model):
     def __str__(self):
         return self.title
 
-# class Oqutuvchilar(models.Model):
-#     daraja     = models.ForeignKey(Daraja, on_delete=models.CASCADE, related_name='daraja', blank=True, null=True)
-#     unvon     = models.ForeignKey(Unvon, on_delete=models.CASCADE, related_name='unvon', blank=True, null=True)
-  
-#     class Meta:
-#         db_table = 'Oqutuvchilar'
-
-#     def __str__(self):
-#         return 'Fan doktori va Professorlar'
-
 ############################################################
 
-class XalqaroMaqolalar(models.Model):
-    title      = models.CharField(max_length=255)
-    file       = models.FileField(upload_to=f"file/xalqaro_maqolalar", blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+class FileType(models.Model):
+    title = models.CharField(max_length=255, null=False, blank=False, unique=True)
 
     class Meta:
-        db_table = 'Xalqaro Maqolalar'
+        db_table = 'File Type'
 
     def __str__(self):
         return self.title
 
 
-class MahalliyMaqolalar(models.Model):
+class TeacherFile(models.Model):
     title      = models.CharField(max_length=255)
-    file       = models.FileField(upload_to=f"file/mahalliy_maqolalar", blank=True, null=True)
+    file       = models.FileField(upload_to=f"file/")
+    type       = models.ForeignKey(FileType, on_delete=models.CASCADE, related_name='type')
+    teacher_id = models.ForeignKey('TeacherData', on_delete=models.CASCADE, related_name='teacher')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        db_table = 'Mahalliy Maqolalar'
-
-    def __str__(self):
-        return self.title
-
-
-class Guvohnomalar(models.Model):
-    title      = models.CharField(max_length=255)
-    file       = models.FileField(upload_to=f"file/guvohnomalar", blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        db_table = 'Guvohnomalar'
-
-    def __str__(self):
-        return self.title
-
-
-
-class Shartnomalar(models.Model):
-    title      = models.CharField(max_length=255)
-    file       = models.FileField(upload_to=f"file/shartnomalar", blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        db_table = 'Shartnomalar'
-
-    def __str__(self):
-        return self.title
-
-
-class Tanlovlar(models.Model):
-    title      = models.CharField(max_length=255)
-    file       = models.FileField(upload_to=f"file/tanlovlar", blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        db_table = 'Tanlovlar'
+        db_table = 'Teacher File'
 
     def __str__(self):
         return self.title
@@ -144,17 +92,11 @@ class TeacherData(models.Model):
     fakultet   = models.ForeignKey(Fakultet, on_delete=models.CASCADE, related_name='fakultet', blank=True, null=True)
     kafedra    = models.ForeignKey(Kafedra, on_delete=models.CASCADE, related_name='kafedra', blank=True, null=True)
     
-    xalqaro_maqolalar  = models.ForeignKey(XalqaroMaqolalar, on_delete=models.CASCADE, related_name='xalqaro', blank=True, null=True)
-    mahalliy_maqolalar = models.ForeignKey(MahalliyMaqolalar, on_delete=models.CASCADE, related_name='mahalliy', blank=True, null=True)
-    guvohnomalar       = models.ForeignKey(Guvohnomalar, on_delete=models.CASCADE, related_name='guvohnoma', blank=True, null=True)
-    shartnomalar       = models.ForeignKey(Shartnomalar, on_delete=models.CASCADE, related_name='shartnoma', blank=True, null=True)
-    tanlovlar          = models.ForeignKey(Tanlovlar, on_delete=models.CASCADE, related_name='tanlov', blank=True, null=True)
-
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        db_table = '1 Teacher Data'
+        db_table = 'Teacher Data'
 
     def __str__(self):
         return self.user.first_name + ' ' + self.user.last_name + ' ' + self.middle_name
