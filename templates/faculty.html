@@ -4,37 +4,19 @@
 {% block content %}
 
 <div id="services" class="our-services section pb-0">
-  <div class="container" style="min-height: 700px;">
+  <div class="container" style="min-height: 100px;">
     <div class="row">
       <div class="col-lg-6 offset-lg-3">
         <div class="section-heading wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
-          <h6>kafedra nomi </h6>
-        </div>
+          {% for kafedra in kafedralar %}  <h6> {% if kafedra.pk == 1 %}{{ kafedra.title }}{% endif %}</h6> {% endfor %}
+          </div>
       </div>
     </div>
   </div>
   <div class="container-fluid">
     <div class="row">
-      {% for ustoz in teacher %}
-      {% if ustoz.fakultet.title%}
-      <div class="col-lg-4">
-        <div class="service-item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.4s">
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="icon">
-                <img src="{{ ustoz.image.url}}" alt="">
-              </div>
-            </div>
-            <div class="col-lg-8">
-              <div class="right-content">
-                <h4>{{ ustoz.user.first_name }} {{ ustoz.user.last_name  }} {{ ustoz.middle_name }}</h4>
-                <p>{{ ustoz.informaton }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
+      {% for ustoz in teacher %}
       <div class="col-lg-4">
         <div class="service-item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.4s">
           <div class="row">
@@ -45,14 +27,13 @@
             </div>
             <div class="col-lg-8">
               <div class="right-content">
-                <h4>{{ ustoz.user.first_name }} {{ ustoz.user.last_name  }} {{ ustoz.middle_name }}</h4>
+                <a href="{% url 'index' %}"> <h4>{{ ustoz.user.first_name }} {{ ustoz.user.last_name  }} {{ ustoz.middle_name }}</h4></a>
                 <p>{{ ustoz.informaton }}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      {% endif %}
       {% endfor %}
       
     </div>

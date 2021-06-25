@@ -16,18 +16,29 @@ from .models import (
                     )
 from .forms import TeacherFileForm, TeacherDataForm
 
+
+
+kaferda = Kafedra.objects.all()
+
 def index(request):
     Teacher        = TeacherData.objects.all()
-    random_teacher = TeacherData.objects.get(pk=1)
-    kaferda        = Kafedra.objects.all()
+    random_teacher = random.choice(list(Teacher))
 
-    teacher_number           = TeacherData.objects.count()
-    teacher_number_professor = Unvon.objects.filter(title="Professor").count()
-    teacher_number_big       = Unvon.objects.filter(title="Katta o'qituvchi").count()
+    # teacher_number           = TeacherData.objects.count()
+    # teacher_number_professor = Unvon.objects.filter(title="Professor").count()
+    # teacher_number_big       = Unvon.objects.filter(title="Katta o'qituvchi").count()
 
-    # maqola_number       = XalqaroMaqolalar.objects.count() + MahalliyMaqolalar.objects.count()
-    # guvohnoma_number    = Guvohnomalar.objects.count()
-    # shartnomalar_number = Shartnomalar.objects.count()
+    # maqola_number       = TeacherFile.objects.count() + TeacherFile.objects.count()
+    # guvohnoma_number    = FileType.objects.filter(title='Guvohnomalar').count()
+    # shartnomalar_number = TeacherFile.objects.count()
+
+    teacher_number           = 75
+    teacher_number_professor = 50
+    teacher_number_big       = 25
+
+    maqola_number       = 101
+    guvohnoma_number    = 10
+    shartnomalar_number = 20
 
     context = {
         'teacher':             Teacher,
@@ -36,9 +47,9 @@ def index(request):
         'teacher_number':      teacher_number,
         'teacher_number_professor': teacher_number_professor,
         'teacher_number_big':  teacher_number_big,
-        # 'maqola_number':       maqola_number,
-        # 'guvohnoma_number':    guvohnoma_number,
-        # 'shartnomalar_number': shartnomalar_number
+        'maqola_number':       maqola_number,
+        'guvohnoma_number':    guvohnoma_number,
+        'shartnomalar_number': shartnomalar_number
     }
     return render(request, 'index.html', context)
 
@@ -46,14 +57,15 @@ def index(request):
 def batafsil(request, pk):
     random_teacher = TeacherData.objects.get(pk=pk)
     context = {
-        'random_teacher': random_teacher
+        'kafedralar': kaferda,
+        'random_teacher': random_teacher,
     }
     return render(request, 'batafsil.html',context)
 
 
 
+
 def faculty(request, pk):
-    kaferda = Kafedra.objects.all()
     Teacher = TeacherData.objects.all()
     context = {
         'kafedralar': kaferda,
@@ -69,15 +81,20 @@ def faculty(request, pk):
 def account(request):
     user_data = TeacherData.objects.get(user_id=request.user.id)
     if request.method == 'POST':
-        form=TeacherDataForm(request.POST)
+        form=TeacherDataForm(request.POST, request.FILES, instance=user_data)
         if form.is_valid():
-            form = form.save(commit=False)
+            # form      = form.save(commit=False)
+            # teacher = TeacherData.objects.get(user_id=request.user.id)
+            # form.user_id = teacher.id
             form.save()
+            return redirect('account')
     else:
-        form = TeacherDataForm()
-    kaferda = Kafedra.objects.all()
+        form = TeacherDataForm(request.POST or None, instance=user_data)
+
+    teacherfile = TeacherFile.objects.all()
     context = {
         'user_data' : user_data,
+        'teacherfile': teacherfile,
         'kafedralar': kaferda,
         'form'      : form,
     }
@@ -85,6 +102,12 @@ def account(request):
     
 
 
+
+
+
+
+
+#####################  FUll  ######################
 @login_required
 def account_form(request):
     if request.method== "POST":
@@ -92,15 +115,15 @@ def account_form(request):
         if form.is_valid():
             form = form.save(commit=False)
             teacher = TeacherData.objects.get(user_id=request.user.id)
-            form.teacher_id = teacher.id
+            form.teacher_id = teacher
             form.save()
-            # instance = TeacherFile( title=request.POST['title'], file=request.FILES['file'], type=request.POST['type'], teacher_id=request.user)
-            # instance.save()
+            return redirect('account')
     else:
         form = TeacherFileForm()
 
     choice = TeacherFile.objects.all()
     context = {
+        'kafedralar': kaferda,
         'choice': choice,
         'form': form,
     }

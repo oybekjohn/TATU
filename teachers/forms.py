@@ -15,4 +15,4 @@ class TeacherDataForm(ModelForm):
 
     class Meta:
         model = TeacherData
-        fields = ['image', 'daraja', 'unvon', 'fakultet', 'kafedra',]
+        fields = ['middle_name', 'informaton','image', 'daraja', 'unvon', 'fakultet', 'kafedra',]

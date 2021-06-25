@@ -8,110 +8,58 @@
       <div class="row">
         <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
 
-          <form id="contactwe" action="{% url 'account' %}" method="post">
-          {% csrf_token %}
+          <form id="contactwe" action="{% url 'account' %}" method="post"  enctype="multipart/form-data">
+
+            {% csrf_token %}
             <div class="row">
               <div class="col-lg-6">
                 <div class="contactwe-info">
-                {% if user_date.image.url == none %}
-                  <img  src="{{ user_data.image.url }}" alt="">
-                {% else %}
-                   <img  src="{%  static 'assets/images/banner-right-image.png' %}" alt="">
-                {% endif %}
+
+                  {% if user_date.image.url == none %}
+                    <img  src="{{ user_data.image.url }}" alt="">
+                  {% else %}
+                    <img  src="{%  static 'assets/images/banner-right-image.png' %}" alt="">
+                  {% endif %}
+
                 </div>
-                  <label for="file">Rasmiy suratingizni yuklang </label>
-                  {% comment %} <input style="width: 140px; border: 0;" type="file" id="file" name="file" multiple> {% endcomment %}
+                  <label for="file">Rasmiy suratingizni yuklang. </label>
               </div>
+
               <div class="col-lg-6">
                 <div class="section-heading">
                   {% if user.is_authenticated %}
-                  <h2>{{ user.first_name }} {{ user.last_name  }} {{ user_data.middle_name }}</h2>
+                    <h2>{{ user.first_name }} {{ user.last_name  }} {{ user_data.middle_name }}</h2>
                   {% else %}
-                  <h2>anonym</h2>
+                    <h2>Anonym</h2>
                   {% endif %}
                 </div>
               </div>
+
               <div class="col-lg-12">
                 <div class="row">
+                  <div class="col-lg-12">
+                    <div class="row">
 
-                <div class="col-lg-12">
-                <div class="row">
-                  {{form}} 
-                </div>
-                </div>
+                      {{form}} 
 
-                  {% comment %} <div class="col-lg-3 col-md-6 mt-2">
-                    <fieldset>
-                      <select name="plan" id="plan">
-                        <option value="none"  selected disabled hidden >Daraja </option>
-                        <option value="free">Fan doktori</option>
-                        <option value="starter">Fan nomzodi </option>
-                        <option value="starter">Magistr</option>
-                        <option value="starter">Bakalavr</option>
-                        <option value="professional">-</option>
-                    </select>
-                    </fieldset>
+                    </div>
                   </div>
-
-                  <div class="col-lg-3 col-md-6 mt-2">
-                    <fieldset>
-                      <select name="plan" id="plan">
-                        <option value="none"  selected disabled hidden >Unvon </option>
-                        <option value="free">Professor</option>
-                        <option value="starter">Dotsent</option>
-                        <option value="corporate">Katta o'qituvchi</option>
-                        <option value="corporate">Asissent</option>
-                        <option value="professional">-</option>
-                    </select>
-                    </fieldset>
-                  </div>
-
-                  <div class="col-lg-3 col-md-6 mt-2">
-                    <fieldset>
-                      <select name="plan" id="plan">
-                        <option value="none"  selected disabled hidden >Fakultet </option>
-                        <option value="free">Kompyuter injiniring</option>
-                        <option value="starter">Telekomunikatsiya injiniring</option>
-                    </select>
-                    </fieldset>
-                  </div>
-
-                  <div class="col-lg-3 col-md-6 mt-2">
-                    <fieldset>
-                      <select name="plan" id="plan">
-                        <option value="none"  selected disabled hidden >Kafedra </option>
-                        <option value="free">Dasturiy injiniring</option>
-                        <option value="starter">Kompyuter tizimlari</option>
-                        <option value="professional">Axborot texnologiyalar</option>
-                        <option value="corporate">Telekomunikatsiya injiniring</option>
-                        <option value="corporate">Axborot ta'lim texnologiyalar</option>
-                        <option value="corporate">Axborot xafsizligi</option>
-                        <option value="corporate">Gumanitar fanlar</option>
-                        <option value="corporate">Tabiiy fanlar</option>
-                        <option value="corporate">Tillar va jismoniy ma'daniyat</option>
-                    </select>
-                    </fieldset>
-                  </div> {% endcomment %}
-
                   <div class="col-lg-12 mt-4 row">
                     <div class="col-lg-6 mt-4">
-                      <button id="show"> <a href="{% url 'account_form' %}"><b> Yangi fayl qo'shish</b> </a> </button>                 
+                      <a href="{% url 'account_form' %}" id="show" style="border: solid blue 1px; border-radius: 15px; background: #33ccc5; padding: 10px 0; display: block;"><b> Yangi fayl qo'shish</b> </a>                 
                     </div>
                     <div class="col-lg-6">
                       <p>Mavjud maqola</p>
                       <div class="clone_form"> 
                       
-                        <label type="text"><b>Xalqaro Maqolalar:</b></label> mafsdkvkdaskdsmf dksmfvaklsdm <br>
-                        <label type="text"><b>Mahalliy Maqolalar:</b></label> mafsdkvkdaskdsmf dksmfvaklsdm <br>
-                        <label type="text"><b>Guvohnomalar:</b></label> mafsdkvkdaskdsmf dksmfvaklsdm <br>
-                        <label type="text"><b>Shartnomalar:</b></label> mafsdkvkdaskdsmf dksmfvaklsdm <br>
-                        <label type="text"><b>Tanlovlar:</b></label> mafsdkvkdaskdsmf dksmfvaklsdm <br>
+                        {% for xmaqola in teacherfile %} <label type="text" style="float: left"><b>{{ xmaqola.type}}:</b></label> <a href="#"  > {{ xmaqola }} </a> <br> {% if xmaqola.type == "1" %}: {{ xmaqola.type }} <br>{% endif %}{% endfor %} <br>
+                        
                       </div>
                     </div>
-                    <fieldset class="col-12">
-                      <!-- <input type="checkbox" id="show"> -->
+                    
                       <button type="submit" id="show">Malumotlarni saqlash</button> 
-                    </fieldset>
+                    
+                  </div>
                 </div>
               </div>
             </div>
