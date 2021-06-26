@@ -1,5 +1,6 @@
 import random
 
+from django.db.models import Q
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
@@ -24,11 +25,10 @@ unvon  = Unvon.objects.all()
 fakultet = Fakultet.objects.all()
 
 def index(request):
-    active_teacher = TeacherFile.objects.distinct("teacher_id").order_by('-teacher_id').all()[:6]
+    active_teacher = TeacherFile.objects.annotate().order_by('-teacher_id').all()[:6]
+    print(active_teacher)
 
-    teacher        = TeacherData.objects.all()
-
-#ekran pastidagi raqamlar - correct
+    teacher        = TeacherData.objects.all()[:9]
     random_teacher = random.choice(list(teacher))
     teacher_number           = teacher.count()
     teacher_number_professor = TeacherData.objects.filter(unvon_id=1).count()
@@ -36,6 +36,15 @@ def index(request):
     maqola_number       = TeacherFile.objects.filter(type=1).count() + TeacherFile.objects.filter(type=2).count()
     guvohnoma_number    = TeacherFile.objects.filter(type=3).count()
     shartnomalar_number = TeacherFile.objects.filter(type=4).count()
+
+    oneteacher_maqola   = TeacherFile.objects.filter(type=1).count()
+    oneteacher_guvohnoma= TeacherFile.objects.filter(type=3).count()
+    oneteacher_shartnoma= TeacherFile.objects.filter(type=4).count()
+
+    indikator_salohiyat = int(teacher_number_professor/teacher_number*100)  
+    indikator_maqola    = int(oneteacher_maqola/teacher_number*100)
+    indikator_guvohnoma = int(oneteacher_guvohnoma/teacher_number*100)
+    indikator_shartnoma = int(oneteacher_shartnoma/teacher_number*100)
 
     context = {
         'teacher'           :  teacher,
@@ -48,19 +57,27 @@ def index(request):
         'teacher_number_big':  teacher_number_big,
         'maqola_number'     :  maqola_number,
         'guvohnoma_number'  :  guvohnoma_number,
-        'shartnomalar_number': shartnomalar_number
+        'shartnomalar_number': shartnomalar_number,
+
+        'indikator_salohiyat': indikator_salohiyat,
+        'indikator_maqola'   : indikator_maqola,
+        'indikator_guvohnoma': indikator_guvohnoma,
+        'indikator_shartnoma': indikator_shartnoma,
+
     }
     return render(request, 'index.html', context)
 
 
 def batafsil(request, pk):
-    random_teacher = TeacherData.objects.get(pk=pk)
-
+    random_teacher        = TeacherData.objects.all().filter(pk=pk)
+    # random_teacher_maqola = TeacherFile.objects.get(teacher_id=pk)
+    # print(random_teacher_maqola)
     context = {
         'kafedralar'    : kaferda,
         'unvonlar'      : unvon,
         'darajalar'     : daraja,
         'random_teacher': random_teacher,
+        # 'random_teacher_maqola': random_teacher_maqola,
     }
     return render(request, 'batafsil.html',context)
 
@@ -109,7 +126,7 @@ def unvon_page(request, pk):
     return render(request, 'unvon_page.html', context)
 
 def oqituvchilar_page(request):
-    Teacher = TeacherData.objects.all()
+    Teacher = TeacherData.objects.filter(Q(unvon=3) | Q(unvon=4))
 
     context = {
         'kafedralar': kaferda,
@@ -128,9 +145,6 @@ def account(request):
     if request.method == 'POST':
         form=TeacherDataForm(request.POST, request.FILES, instance=user_data)
         if form.is_valid():
-            # form      = form.save(commit=False)
-            # teacher = TeacherData.objects.get(user_id=request.user.id)
-            # form.user_id = teacher.id
             form.save()
             return redirect('account')
     else:
@@ -138,7 +152,7 @@ def account(request):
 
 
     current_user = request.user.id
-    teacherfile = TeacherFile.objects.get(teacher_id=27)
+    teacherfile = TeacherFile.objects.get(pk=request.user.id)
 
     context = {
         'user_data'  : user_data,

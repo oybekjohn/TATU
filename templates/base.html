@@ -135,9 +135,10 @@
         <script src="{%  static 'assets/js/animation.js' %}"></script>
         <script src="{%  static 'assets/js/imagesloaded.js' %}"></script>
         <script src="{%  static 'assets/js/custom.js' %}"></script>
+        <script src="{%  static 'assets/js/main.js' %}"></script>
 
 
-        <script>
+        {% comment %} <script>
             $(document).ready(function() {
             var max_fields      = 50; //maximum input boxes allowed
             var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
@@ -159,7 +160,7 @@
                 }
             });
 
-            
+        
             
             $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
                 e.preventDefault(); $(this).parent('div').remove(); x--;
@@ -178,8 +179,8 @@
             add_clone.on("click" , function(e) {
                 e.preventDefault()
                 clone_form.clone().insertAfter( clone_form );
-            }) 
-        </script>
+            }) })
+        </script> {% endcomment %}
 
 
     </body>
