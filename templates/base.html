@@ -55,7 +55,7 @@
                         <a class="dropbtn">Kafedralar</a>
                         <div class="dropdown-content">
                             {% for kafedra in kafedralar %}
-                            <a href="{% url 'faculty' pk=kafedra.pk%}">{{ kafedra.title }}</a>
+                                <a href="{% url 'faculty' pk=kafedra.pk%}">{{ kafedra.title }}</a>
                             {% endfor %}
                         </div>
                         </div>
@@ -63,21 +63,30 @@
                         <li class="scroll-to-section"><div class="dropdown">
                         <a class="dropbtn">Fan doktorlari</a>
                         <div class="dropdown-content">
-                            <a href="{% url 'index' %}">Professor</a>
-                            <a href="#">Dotsent</a>
+                            {% for daraja in  darajalar %}
+                                <a href="{% url 'daraja' pk=daraja.pk%}">{{ daraja.title }}</a>
+                            {% endfor %}
                         </div>
                         </div>
                         </li>
                         <li class="scroll-to-section"><div class="dropdown">
                         <a class="dropbtn">Falsafa doktorlari</a>
                         <div class="dropdown-content">
-                            <a href="#">Professor</a>
-                            <a href="#">Dotsent</a>
-                            <a href="#">Unvonga ega emas</a>
+                            {% for unvon in unvonlar %}
+                                <a href="{% url 'unvon' pk=unvon.pk%}">{{ unvon.title }}</a>
+                            {% endfor %}
                         </div>
                         </div>
                         </li>
-                        <li class="scroll-to-section"><a href="#portfolio">O'qituvchilar</a></li>
+                        <li class="scroll-to-section"><a href="{% url 'oqituvchilar' %}">O'qituvchilar</a></li>
+                        {% comment %} <li class="scroll-to-section"><div class="dropdown">
+                        <a class="dropbtn">O'qituvchilar</a>
+                        <div class="dropdown-content">
+                            {% for allteacher in teacher %}
+                                <a href="{% url 'oqituvchilar' %}">{{ allteacher.title }}</a>
+                            {% endfor %}
+                        </div>
+                        </div> {% endcomment %}
                         <li class="scroll-to-section"><a href="#contact">Iqtidorli talabalar</a></li> 
                         <li class="scroll-to-section">
                         <div class="main-blue-button">
@@ -149,6 +158,8 @@
                     $(wrapper).append('<div style="padding:10px"><label style="margin-right: 10px" for="file" id="file" >Shartnoma nomi</label><input type="text" name="mytext[]"/><input type="file" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
                 }
             });
+
+            
             
             $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
                 e.preventDefault(); $(this).parent('div').remove(); x--;

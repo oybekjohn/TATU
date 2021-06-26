@@ -52,7 +52,8 @@
                       <p>Mavjud maqola</p>
                       <div class="clone_form"> 
                       
-                        {% for xmaqola in teacherfile %} <label type="text" style="float: left"><b>{{ xmaqola.type}}:</b></label> <a href="#"  > {{ xmaqola }} </a> <br> {% if xmaqola.type == "1" %}: {{ xmaqola.type }} <br>{% endif %}{% endfor %} <br>
+                      
+                        <label type="text" style="float: left"><b>{{ teacherfile.type}}:</b></label> <a id="download" href="#" > {{ teacherfile.title }} </a> <br>
                         
                       </div>
                     </div>

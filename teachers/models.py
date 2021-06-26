@@ -83,9 +83,9 @@ class TeacherFile(models.Model):
 
 class TeacherData(models.Model):
     user       = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user')
-    middle_name= models.CharField(max_length=255, null=True)
-    informaton = models.TextField(null=True)
-    image      = models.ImageField(upload_to=f"images/user", max_length=255, blank=True, null=True)
+    middle_name= models.CharField(max_length=255, null=True, blank=True)
+    informaton = models.TextField(null=True, blank=True)
+    image      = models.ImageField(upload_to=f"images/user", max_length=255, default='Profile.png', blank=True, null=True)
     
     daraja     = models.ForeignKey(Daraja, on_delete=models.CASCADE, related_name='daraja', blank=True, null=True)
     unvon      = models.ForeignKey(Unvon, on_delete=models.CASCADE, related_name='unvon', blank=True, null=True)
