@@ -30,7 +30,7 @@ def index(request):
         liss.append(userr.teacher_id.id)
     liss.sort(reverse = True)
     
-    for i in liss:
+    for i in active_teacher:
         liss.append(i)
 
     domlalar = TeacherData.objects.all()
