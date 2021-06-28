@@ -12,11 +12,9 @@
             <div class="row">
               <div class="col-lg-4">
                 <div class="icon" style="width: 300px; height: 400px;">
-                  {% if random_teacher.image %}
+              
                     <img src="{{ random_teacher.image.url }}" alt=""  style="width: 300px; height: 400px;">
-                  {% else %}
-                    <img src="{%  static 'assets/images/banner-right-image.png' %}" alt=""  style="width: 300px; height: 400px;">
-                  {% endif %}
+           
                 </div>
               </div>
               <div class="col-lg-8">
@@ -31,9 +29,10 @@
                       Xo'jalik shartnomalar 2 ta, Tanlovlarda Diplom sertifikatlari 8 ta
                   </p>
                   <!-- maqolalar dasturiy guvohnomlalari yukla olish mumkin bo'lsin -->
-                  <a href="{{ random_teacher.docfile.url }}"> random_teacher_maqola,</a>
-                  <a href="#">guvohnoma nomi,</a>
-                  <a href="#">xo'lalik shartnoma va boshqalar, yuklash</a>
+
+                  {% for teacherfile in random_teacher_maqola %}
+                  <a href="{{ teacherfile.file.url }}"> {{ teacherfile }},</a>
+                  {% endfor %} 
                 </div>
               </div>
             </div>

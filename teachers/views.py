@@ -11,7 +11,6 @@ from .models import (
                     Unvon, 
                     Fakultet, 
                     Kafedra,
-                    FileType,
                     TeacherFile,         
                     TeacherData,                    
                     )
@@ -25,10 +24,19 @@ unvon  = Unvon.objects.all()
 fakultet = Fakultet.objects.all()
 
 def index(request):
-    active_teacher = TeacherFile.objects.annotate().order_by('-teacher_id').all()[:6]
-    print(active_teacher)
+    liss = []
+    active_teacher = TeacherFile.objects.all()
+    for userr in active_teacher:
+        liss.append(userr.teacher_id.id)
+    liss.sort(reverse = True)
+    
+    for i in liss:
+        liss.append(i)
 
-    teacher        = TeacherData.objects.all()[:9]
+    domlalar = TeacherData.objects.all()
+    
+
+    teacher        = TeacherData.objects.all()
     random_teacher = random.choice(list(teacher))
     teacher_number           = teacher.count()
     teacher_number_professor = TeacherData.objects.filter(unvon_id=1).count()
@@ -69,15 +77,23 @@ def index(request):
 
 
 def batafsil(request, pk):
-    random_teacher        = TeacherData.objects.all().filter(pk=pk)
-    # random_teacher_maqola = TeacherFile.objects.get(teacher_id=pk)
-    # print(random_teacher_maqola)
+    random_teacher        = TeacherData.objects.get(pk=pk)
+    random_teacher_maqola = TeacherFile.objects.filter(teacher_id=random_teacher)
+
+
+    
+    xalqaro_maqola_number = TeacherFile.objects.filter(type=1).count()
+    mahalliy_maqola_number= TeacherFile.objects.filter(type=2).count()
+    shartnoma_number      = TeacherFile.objects.filter(type=4).count()
+    guvohnoma_number      = TeacherFile.objects.filter(type=3).count()
+    tanlov_number         = TeacherFile.objects.filter(type=5).count()
+
     context = {
         'kafedralar'    : kaferda,
         'unvonlar'      : unvon,
         'darajalar'     : daraja,
         'random_teacher': random_teacher,
-        # 'random_teacher_maqola': random_teacher_maqola,
+        'random_teacher_maqola': random_teacher_maqola,
     }
     return render(request, 'batafsil.html',context)
 
@@ -152,7 +168,7 @@ def account(request):
 
 
     current_user = request.user.id
-    teacherfile = TeacherFile.objects.get(pk=request.user.id)
+    teacherfile = TeacherFile.objects.filter(teacher_id=user_data)
 
     context = {
         'user_data'  : user_data,

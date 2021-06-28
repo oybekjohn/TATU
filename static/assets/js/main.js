@@ -41,15 +41,15 @@ $(document).ready(function() {
         e.preventDefault(); $(this).parent('div').remove(); x--;
     })
 
-    file_from.on('click',function(e) { 
-         e.preventDefault()
-        window.location = '{% url "account_form"%}'
-    })
+    // file_from.on('click',function(e) { 
+    //      e.preventDefault()
+    //     window.location = '{% url "account_form"%}'
+    // })
 
-    saqlash_btn.on("click" , function (e) {
-        e.preventDefault()
-        window.location = '{% url "account"%}'
-    })
+    // saqlash_btn.on("click" , function (e) {
+    //     e.preventDefault()
+    //     window.location = '{% url "account"%}'
+    // })
 
     add_clone.on("click" , function(e) {
         e.preventDefault()
