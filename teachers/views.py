@@ -16,25 +16,15 @@ from .models import (
                     )
 from .forms import TeacherFileForm, TeacherDataForm
 
-
-
 kaferda = Kafedra.objects.all()
 daraja  = Daraja.objects.all()
 unvon  = Unvon.objects.all()
 fakultet = Fakultet.objects.all()
 
 def index(request):
-    liss = []
-    active_teacher = TeacherFile.objects.all()
-    for userr in active_teacher:
-        liss.append(userr.teacher_id.id)
-    liss.sort(reverse = True)
+    # active_teacher = TeacherFile.objects.all()
     
-    for i in active_teacher:
-        liss.append(i)
-
-    domlalar = TeacherData.objects.all()
-    
+    domlalar = TeacherData.objects.all()[:9]
 
     teacher        = TeacherData.objects.all()
     random_teacher = random.choice(list(teacher))
@@ -56,6 +46,7 @@ def index(request):
 
     context = {
         'teacher'           :  teacher,
+        'active_domlalar'   :  domlalar,
         'random_teacher'    :  random_teacher,
         'kafedralar'        :  kaferda,
         'unvonlar'          :  unvon,
@@ -79,14 +70,12 @@ def index(request):
 def batafsil(request, pk):
     random_teacher        = TeacherData.objects.get(pk=pk)
     random_teacher_maqola = TeacherFile.objects.filter(teacher_id=random_teacher)
-
-
     
-    xalqaro_maqola_number = TeacherFile.objects.filter(type=1).count()
-    mahalliy_maqola_number= TeacherFile.objects.filter(type=2).count()
-    shartnoma_number      = TeacherFile.objects.filter(type=4).count()
-    guvohnoma_number      = TeacherFile.objects.filter(type=3).count()
-    tanlov_number         = TeacherFile.objects.filter(type=5).count()
+    xalqaro_maqola_number = TeacherFile.objects.filter(type=1, teacher_id=random_teacher).count()
+    mahalliy_maqola_number= TeacherFile.objects.filter(type=2, teacher_id=random_teacher).count()
+    shartnoma_number      = TeacherFile.objects.filter(type=4, teacher_id=random_teacher).count()
+    guvohnoma_number      = TeacherFile.objects.filter(type=3, teacher_id=random_teacher).count()
+    tanlov_number         = TeacherFile.objects.filter(type=5, teacher_id=random_teacher).count()
 
     context = {
         'kafedralar'    : kaferda,
@@ -94,6 +83,12 @@ def batafsil(request, pk):
         'darajalar'     : daraja,
         'random_teacher': random_teacher,
         'random_teacher_maqola': random_teacher_maqola,
+
+        'xalqaro_maqola_number' : xalqaro_maqola_number,
+        'mahalliy_maqola_number': mahalliy_maqola_number,
+        'shartnoma_number'      : shartnoma_number,
+        'guvohnoma_number'      : guvohnoma_number,
+        'tanlov_number'         : tanlov_number,
     }
     return render(request, 'batafsil.html',context)
 
