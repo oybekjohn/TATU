@@ -1,13 +1,13 @@
 from django.contrib import admin
 from .models import (
-                    Daraja,
-                    Unvon, 
-                    Fakultet, 
-                    Kafedra,
-                    FileType,
-                    TeacherFile, 
-                    TeacherData,                  
-                    )
+    Daraja,
+    Unvon,
+    Fakultet,
+    Kafedra,
+    FileType,
+    TeacherFile,
+    TeacherData,
+)
 
 
 admin.site.register(Daraja)

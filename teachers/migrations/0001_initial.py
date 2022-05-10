@@ -15,93 +15,202 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Daraja',
+            name="Daraja",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=255)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now_add=True)),
             ],
             options={
-                'db_table': 'Daraja',
+                "db_table": "Daraja",
             },
         ),
         migrations.CreateModel(
-            name='Fakultet',
+            name="Fakultet",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=255)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now_add=True)),
             ],
             options={
-                'db_table': 'Fakultet',
+                "db_table": "Fakultet",
             },
         ),
         migrations.CreateModel(
-            name='Kafedra',
+            name="Kafedra",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=255)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now_add=True)),
             ],
             options={
-                'db_table': 'Kafedra',
+                "db_table": "Kafedra",
             },
         ),
         migrations.CreateModel(
-            name='TeacherData',
+            name="TeacherData",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('middle_name', models.CharField(max_length=255, null=True)),
-                ('informaton', models.TextField(null=True)),
-                ('image', models.ImageField(blank=True, max_length=255, null=True, upload_to='images/user')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now_add=True)),
-                ('daraja', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='daraja', to='teachers.daraja')),
-                ('fakultet', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='fakultet', to='teachers.fakultet')),
-                ('kafedra', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='kafedra', to='teachers.kafedra')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("middle_name", models.CharField(max_length=255, null=True)),
+                ("informaton", models.TextField(null=True)),
+                (
+                    "image",
+                    models.ImageField(
+                        blank=True, max_length=255, null=True, upload_to="images/user"
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now_add=True)),
+                (
+                    "daraja",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="daraja",
+                        to="teachers.daraja",
+                    ),
+                ),
+                (
+                    "fakultet",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="fakultet",
+                        to="teachers.fakultet",
+                    ),
+                ),
+                (
+                    "kafedra",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="kafedra",
+                        to="teachers.kafedra",
+                    ),
+                ),
             ],
             options={
-                'db_table': 'Teacher Data',
+                "db_table": "Teacher Data",
             },
         ),
         migrations.CreateModel(
-            name='Unvon',
+            name="Unvon",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=255)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now_add=True)),
             ],
             options={
-                'db_table': 'Unvon',
+                "db_table": "Unvon",
             },
         ),
         migrations.CreateModel(
-            name='TeacherFile',
+            name="TeacherFile",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255)),
-                ('file', models.FileField(blank=True, null=True, upload_to='file/%d')),
-                ('type', models.CharField(choices=[('Xalqaro Maqolalar', 'Xalqaro Maqolalar'), ('Mahalliy Maqolalar', 'Mahalliy Maqolalar'), ('Guvohnomalar', 'Guvohnomalar'), ('Shartnomalar', 'Shartnomalar'), ('Tanlovlar', 'Tanlovlar')], max_length=255)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now_add=True)),
-                ('teacher_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='teacher', to='teachers.teacherdata')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=255)),
+                ("file", models.FileField(blank=True, null=True, upload_to="file/%d")),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[
+                            ("Xalqaro Maqolalar", "Xalqaro Maqolalar"),
+                            ("Mahalliy Maqolalar", "Mahalliy Maqolalar"),
+                            ("Guvohnomalar", "Guvohnomalar"),
+                            ("Shartnomalar", "Shartnomalar"),
+                            ("Tanlovlar", "Tanlovlar"),
+                        ],
+                        max_length=255,
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now_add=True)),
+                (
+                    "teacher_id",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="teacher",
+                        to="teachers.teacherdata",
+                    ),
+                ),
             ],
             options={
-                'db_table': 'Teacher File',
+                "db_table": "Teacher File",
             },
         ),
         migrations.AddField(
-            model_name='teacherdata',
-            name='unvon',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='unvon', to='teachers.unvon'),
+            model_name="teacherdata",
+            name="unvon",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="unvon",
+                to="teachers.unvon",
+            ),
         ),
         migrations.AddField(
-            model_name='teacherdata',
-            name='user',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='user', to=settings.AUTH_USER_MODEL),
+            model_name="teacherdata",
+            name="user",
+            field=models.OneToOneField(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="user",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]
