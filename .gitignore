@@ -109,11 +109,14 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+media/
+media
 
 # Spyder project settings
 .spyderproject
 .spyproject
-
+*.sql
+.sql
 # Rope project settings
 .ropeproject
 
