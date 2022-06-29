@@ -1,4 +1,4 @@
-{%  extends 'base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
@@ -7,39 +7,41 @@
   <div class="container" style="min-height: 100px;">
     <div class="row">
       <div class="col-lg-6 offset-lg-3">
-       <div class="section-heading wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
-           <h6> {{faculty.title}} </h6>
-        </div> 
+        <div class="section-heading wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
+          <h6> {{faculty.title}} </h6>
+        </div>
       </div>
     </div>
   </div>
-  <div class="container-fluid"  style="min-height: 550px;">
+  <div class="container-fluid" style="min-height: 550px;">
     <div class="row">
 
       {% for ustoz in teacher %}
 
-        {% if ustoz.kafedra.id == faculty.id %}
-          <div class="col-lg-4">
-            <div class="service-item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.4s">
-              <div class="row">
-                <div class="col-lg-4">
-                  <div class="icon">
-                    <img src="{{ ustoz.image.url}}" alt="">
-                  </div>
-                </div>
-                <div class="col-lg-8">
-                  <div class="right-content">
-                    <a href="{% url 'batafsil' pk=ustoz.pk %}"> <h4>{{ ustoz.user.first_name }} {{ ustoz.user.last_name  }} {{ ustoz.middle_name }}</h4></a>
-                    <p>{{ ustoz.informaton }}</p>
-                  </div>
-                </div>
+      {% if ustoz.kafedra.id == faculty.id %}
+      <div class="col-lg-4" style="background-color: rgba(0, 0, 248, 0.781);">
+        <div class="service-item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.4s">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="icon">
+                <img src="{{ ustoz.image.url}}" alt="">
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <div class="right-content">
+                <a href="{% url 'batafsil' pk=ustoz.pk %}">
+                  <h4>{{ ustoz.user.first_name }} {{ ustoz.user.last_name }} {{ ustoz.middle_name }}</h4>
+                </a>
+                <p>{{ ustoz.informaton }}</p>
               </div>
             </div>
           </div>
-        {% endif %}
+        </div>
+      </div>
+      {% endif %}
 
       {% endfor %}
-      
+
     </div>
   </div>
 </div>

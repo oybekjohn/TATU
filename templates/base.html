@@ -2,182 +2,209 @@
 {% load static %}
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
 
-        <title>Muhammad al-Xorazmiy nomidagi Toshkent axborot texnologiyalar universiteti Samarqand filiali ilmiy salohiyati</title>
+    <title>TATUSF</title>
 
-        <!-- Bootstrap core CSS -->
-        <link href="{%  static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-        <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+    <!-- Bootstrap core CSS -->
+    <link href="{%  static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
 
-        <!-- Additional CSS Files -->
-        <link rel="stylesheet" href="{%  static 'assets/css/fontawesome.css' %}">
-        <link rel="stylesheet" href="{%  static 'assets/css/templatemo-seo-dream.css' %}">
-        <link rel="stylesheet" href="{%  static 'assets/css/animated.css' %}">
-        <link rel="stylesheet" href="{%  static 'assets/css/owl.css' %}">
-    </head>
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{%  static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{%  static 'assets/css/templatemo-seo-dream.css' %}">
+    <link rel="stylesheet" href="{%  static 'assets/css/animated.css' %}">
+    <link rel="stylesheet" href="{%  static 'assets/css/owl.css' %}">
+</head>
 
-    <body>
-        <!-- ***** Preloader Start ***** -->
-        <div id="js-preloader" class="js-preloader">
+<body>
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
         <div class="preloader-inner">
             <span class="dot"></span>
             <div class="dots">
-            <span></span>
-            <span></span>
-            <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
-        </div>
-        <!-- ***** Preloader End ***** -->
-    
-        <!-- ***** Header Area Start ***** -->
-        <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
-            <div class="container">
-                <div class="row">
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+        <div class="container">
+            <div class="row">
                 <div class="col-12">
                     <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="{% url 'index' %}" class="logo">
-                        <h4><img src="{%  static 'assets/images/logo-icon.png' %}" alt="">Portfolio</h4>
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                        <li class="scroll-to-section"><a href="{% url 'index' %}">Filial</a></li>
-                        <li class="scroll-to-section"><div class="dropdown">
-                        <a class="dropbtn">Kafedralar</a>
-                        <div class="dropdown-content">
-                            {% for kafedra in kafedralar %}
-                                <a href="{% url 'faculty' pk=kafedra.pk%}">{{ kafedra.title }}</a>
-                            {% endfor %}
-                        </div>
-                        </div>
-                        </li>
-                        <li class="scroll-to-section"><div class="dropdown">
-                        <a class="dropbtn">Fan doktorlari</a>
-                        <div class="dropdown-content">
-                            {% for daraja in  darajalar %}
-                                <a href="{% url 'daraja' pk=daraja.pk%}">{{ daraja.title }}</a>
-                            {% endfor %}
-                        </div>
-                        </div>
-                        </li>
-                        <li class="scroll-to-section"><div class="dropdown">
-                        <a class="dropbtn">Falsafa doktorlari</a>
-                        <div class="dropdown-content">
-                            {% for unvon in unvonlar %}
-                                <a href="{% url 'unvon' pk=unvon.pk%}">{{ unvon.title }}</a>
-                            {% endfor %}
-                        </div>
-                        </div>
-                        </li>
-                        
-                        <li class="scroll-to-section"><a href="{% url 'oqituvchilar' %}">O'qituvchilar</a></li>
+                        <!-- ***** Logo Start ***** -->
+                        <a href="{% url 'index' %}" class="logo">
+                            <h4><img src="{%  static 'assets/images/logo-icon.jpeg' %}" alt=""> TATUSF </h4>
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <!-- <li style="padding:0 30px 0 30px" class="scroll-to-section">
+                                <a href="{% url 'index' %}">Filial</a>
+                            </li> -->
 
-                        <li class="scroll-to-section"><a href="#contact">Iqtidorli talabalar</a></li> 
-                        <li class="scroll-to-section">
-                        <div class="main-blue-button">
-                            {% if user.is_authenticated %}
-                            <a style="color: aliceblue;" href="{% url 'logout' %}">Chiqish</a>
-                            {% else %}
-                            <a style="color: aliceblue;" href="{% url 'login' %}">Kirish</a>
-                            {% endif %}
-                        </div>
-                        </li> 
-                    </ul>        
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
+                            <li style="padding:0 30px 0 30px" class="scroll-to-section">
+                                <div class="dropdown">
+                                    <a class="dropbtn">Filial</a>
+                                    <div class="dropdown-content" style="width: 270px;">
+                                        <a href="{% url 'oqituvchilar' %}">KI</a>
+                                        <a href="{% url 'oqituvchilar' %}">Telekom</a>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li style="padding:0 30px 0 30px" class="scroll-to-section">
+                                <div class="dropdown">
+                                    <a class="dropbtn">Kafedralar</a>
+                                    <div class="dropdown-content" style="width: 270px;">
+                                        {% for kafedra in kafedralar %}
+                                        <a href="{% url 'faculty' pk=kafedra.pk%}">{{ kafedra.title }}</a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="padding:0 30px 0 30px" class="scroll-to-section">
+                                <div class="dropdown">
+                                    <a class="dropbtn">Ilmiy darajalilar</a>
+                                    <div class="dropdown-content" style="width: 200px;">
+                                        {% for daraja in darajalar %}
+                                        <a href="{% url 'daraja' pk=daraja.pk%}">{{ daraja.title }}</a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="padding:0 30px 0 30px" class="scroll-to-section">
+                                <div class="dropdown">
+                                    <a class="dropbtn">Ilmiy darajasizlar</a>
+                                    <div class="dropdown-content" style="width: 200px;">
+                                        {% for unvon in unvonlar %}
+                                        <a href="{% url 'unvon' pk=unvon.pk%}">{{ unvon.title }}</a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!-- <li class="scroll-to-section"><a href="{% url 'oqituvchilar' %}">O'qituvchilar</a></li> -->
+
+
+                            <li class="scroll-to-section">
+                                <div class="main-blue-button">
+                                    {% if user.is_authenticated %}
+                                    <a style="color: aliceblue; line-height: 16px;"
+                                        href="{% url 'logout' %}">Chiqish</a>
+                                    {% else %}
+                                    <a style="color: aliceblue; line-height: 16px;" href="{% url 'login' %}">Kirish</a>
+                                    {% endif %}
+                                </div>
+                            </li>
+
+                            <li class="scroll-to-section">
+                                <div class="main-blue-button">
+                                    <a style="color: aliceblue;" href="/admin"> Only Admin</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
                     </nav>
                 </div>
-                </div>
             </div>
-        </header>
-        <!-- ***** Header Area End ***** -->
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
 
-        {% block content %}
+    {% block content %}
 
 
 
-        {% endblock content %}
-        
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
+    {% endblock content %}
+
+    <footer style="min-height: 162px; position:static">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
                     <li> email</li>
                     <li> phone</li>
-                    </div>
-                    <div class="col-lg-6">
-                    <li> <a href= > oybeksjob@gmail.com </a></li>
-                    <li> +9989-333-888-69</li>
-                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <li> <a href=> crm@gmail.com </a></li>
+                    <li> +9989-333-33-333</li>
                 </div>
             </div>
-        </footer>
+        </div>
+    </footer>
 
-        <!-- Scripts -->
-        <script src="{%  static 'vendor/jquery/jquery.min.js' %}"></script>
-        <script src="{%  static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-        <script src="{%  static 'assets/js/owl-carousel.js' %}"></script>
-        <script src="{%  static 'assets/js/animation.js' %}"></script>
-        <script src="{%  static 'assets/js/imagesloaded.js' %}"></script>
-        <script src="{%  static 'assets/js/custom.js' %}"></script>
-        <script src="{%  static 'assets/js/main.js' %}"></script>
+    <!-- Scripts -->
+    <script src="{%  static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{%  static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{%  static 'assets/js/owl-carousel.js' %}"></script>
+    <script src="{%  static 'assets/js/animation.js' %}"></script>
+    <script src="{%  static 'assets/js/imagesloaded.js' %}"></script>
+    <script src="{%  static 'assets/js/custom.js' %}"></script>
+    <script src="{%  static 'assets/js/main.js' %}"></script>
 
 
-        {% comment %} <script>
-            $(document).ready(function() {
-            var max_fields      = 50; //maximum input boxes allowed
-            var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
-            var add_button      = $(".add_field_button"); //Add button ID
-            var add_input       = $(".add_field_input");
-            var add_input       = $(".add_field_label");
+    {% comment %}
+    <script>
+        $(document).ready(function () {
+            var max_fields = 50; //maximum input boxes allowed
+            var wrapper = $(".input_fields_wrap"); //Fields wrapper
+            var add_button = $(".add_field_button"); //Add button ID
+            var add_input = $(".add_field_input");
+            var add_input = $(".add_field_label");
 
-            var file_from       = $(".file_from")
-            var saqlash_btn     = $("#saqlash_btn");
-            var add_clone       = $(".add_clone");
-            var clone_form      = $(".clone_form");
-            
+            var file_from = $(".file_from")
+            var saqlash_btn = $("#saqlash_btn");
+            var add_clone = $(".add_clone");
+            var clone_form = $(".clone_form");
+
             var x = 1; //initlal text box count
-            $(add_button).click(function(e){ //on add input button click
+            $(add_button).click(function (e) { //on add input button click
                 e.preventDefault();
-                if(x < max_fields){ //max input box allowed
+                if (x < max_fields) { //max input box allowed
                     x++; //text box increment
                     $(wrapper).append('<div style="padding:10px"><label style="margin-right: 10px" for="file" id="file" >Shartnoma nomi</label><input type="text" name="mytext[]"/><input type="file" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
                 }
             });
 
-        
-            
-            $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+
+
+            $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
                 e.preventDefault(); $(this).parent('div').remove(); x--;
             })
 
-            file_from.on('click',function(e) { 
-                 e.preventDefault()
+            file_from.on('click', function (e) {
+                e.preventDefault()
                 window.location = '{% url "account_form"%}'
             })
 
-            saqlash_btn.on("click" , function (e) {
+            saqlash_btn.on("click", function (e) {
                 e.preventDefault()
                 window.location = '{% url "account"%}'
             })
 
-            add_clone.on("click" , function(e) {
+            add_clone.on("click", function (e) {
                 e.preventDefault()
-                clone_form.clone().insertAfter( clone_form );
-            }) })
-        </script> {% endcomment %}
+                clone_form.clone().insertAfter(clone_form);
+            })
+        })
+    </script> {% endcomment %}
 
 
-    </body>
+</body>
+
 </html>

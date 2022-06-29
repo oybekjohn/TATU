@@ -1,21 +1,24 @@
-{%  extends 'base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
 <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
-  <div class="container" >
+  <div class="container">
     <div class="row">
       <div class="col-lg-12">
         <div class="row">
           <div class="col-lg-6 align-self-center">
             <div class="left-content header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
-            
+
               <div class="row">
                 <div class="col-lg-12">
                   <h4>{{ random_teacher.unvon.title }}</h4>
+                  <h4>{{ random_teacher.daraja.title }}</h4>
                 </div>
                 <div class="col-lg-12">
-                  <h2>{{ random_teacher.user.first_name }} {{ random_teacher.user.last_name  }} {{ random_teacher.middle_name }}</h2>
+                  <h2>{{ random_teacher.user.first_name }}
+                    {{ random_teacher.user.last_name }}
+                    {{ random_teacher.middle_name }}</h2>
                 </div>
                 <div class="col-lg-12">
                   <div class="main-green-button scroll-to-section">
@@ -28,11 +31,11 @@
           </div>
           <div class="col-lg-6">
             <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
-            {% if random_teacher.image %}
+              {% if random_teacher.image %}
               <img src="{{ random_teacher.image.url }}" alt="">
-            {% else %}
+              {% else %}
               <img src="{%  static 'assets/images/banner-right-image.png' %}" alt="">
-            {% endif %}
+              {% endif %}
             </div>
           </div>
         </div>
@@ -54,8 +57,8 @@
     <div class="row">
 
       {% for ustoz in active_domlalar %}
-      <div class="col-lg-4">
-        <div class="service-item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.4s">
+      <div class=" col-12 col-md-6 col-lg-4">
+        <div class="service-item wow bounceInUp" st data-wow-duration="1s" data-wow-delay="0.4s">
           <div class="row">
             <div class="col-lg-4">
               <div class="icon">
@@ -64,7 +67,7 @@
             </div>
             <div class="col-lg-8">
               <div class="right-content">
-                <h4>{{ ustoz.user.first_name }} {{ ustoz.user.last_name  }} {{ ustoz.middle_name }}</h4>
+                <h4>{{ustoz.user.first_name }} {{ ustoz.user.last_name }} {{ ustoz.middle_name }}</h4>
                 <p>{{ ustoz.informaton }}</p>
               </div>
             </div>
@@ -88,7 +91,8 @@
                 <div class="icon"></div>
                 <h4>Filial Ilmiy salohiyati</h4>
                 <div class="line-dec"></div>
-                <p>Filialda {{ teacher_number }} ta o'qituvchilar mavjud bo'lib {{ teacher_number_professor }} ta Professorlar {{ teacher_number_big }} ta Katta o'qituvchilar mavjud</p>
+                <p>Filialda {{ teacher_number }} ta o'qituvchilar mavjud bo'lib {{ teacher_number_professor }} ta
+                  Professorlar {{ teacher_number_big }} ta Katta o'qituvchilar mavjud</p>
               </div>
             </div>
             <div class="col-lg-3">
@@ -96,7 +100,8 @@
                 <div class="icon"></div>
                 <h4>Xalqaro maqolalalar</h4>
                 <div class="line-dec"></div>
-                <p>Xalqaro jurnallarda va konfrensiyalarda chop etilgan maqollar soni {{ maqola_number }} tani tashkil qiladi</p>
+                <p>Xalqaro jurnallarda va konfrensiyalarda chop etilgan maqollar soni {{ maqola_number }} tani tashkil
+                  qiladi</p>
               </div>
             </div>
             <div class="col-lg-3">
@@ -108,11 +113,13 @@
               </div>
             </div>
             <div class="col-lg-3">
-              <div class="features-item second-feature2 last-features-item wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+              <div class="features-item second-feature2 last-features-item wow fadeInUp" data-wow-duration="1s"
+                data-wow-delay="0.6s">
                 <div class="icon"></div>
                 <h4>Xo'jalik shartnomalar</h4>
                 <div class="line-dec"></div>
-                <p>Soha korxonalar va davlat tashkilotlari bilan {{ shartnomalar_number }} ta xo'jalik shartnomalar qilingan</p>
+                <p>Soha korxonalar va davlat tashkilotlari bilan {{ shartnomalar_number }} ta xo'jalik shartnomalar
+                  qilingan</p>
               </div>
             </div>
           </div>
@@ -177,7 +184,7 @@
             </div>
             <div class="col-lg-3">
               <div class="skill-item last-skill-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.6s">
-                <div class="progress" data-percentage="100" >
+                <div class="progress" data-percentage="100">
                   <span class="progress-left">
                     <span class="progress-bar"></span>
                   </span>

@@ -147,7 +147,8 @@ def unvon_page(request, pk):
 
 
 def oqituvchilar_page(request):
-    Teacher = TeacherData.objects.filter(Q(unvon=3) | Q(unvon=4))
+    # Teacher = TeacherData.objects.filter(Q(unvon=3) | Q(unvon=4))
+    Teacher = TeacherData.objects.all()
 
     context = {
         "kafedralar": kaferda,
