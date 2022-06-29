@@ -31,11 +31,15 @@
           </div>
           <div class="col-lg-6">
             <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
-              <!-- {% if random_teacher.image %}
+              <img src="{%  static 'assets/images/banner-right-image.png' %}" alt="Static Rasm">
+<!--               
+              {% if random_teacher.image %}
               <img src="{{ random_teacher.image.url }}" alt="">
-              {% else %} -->
-              <img src="{%  static 'assets/images/banner-right-image.png' %}" alt="">
-              <!-- {% endif %} -->
+              {% else %}
+              <img src="{%  static 'assets/images/banner-right-image.png' %}" alt="Static Rasm">
+              {% endif %}
+               -->
+
             </div>
           </div>
         </div>
@@ -62,7 +66,7 @@
           <div class="row">
             <div class="col-lg-4">
               <div class="icon">
-                <img src="{{ ustoz.image.url}}" alt="">
+                <img src="{%  static 'assets/images/banner-right-image.png' %}" alt="">
               </div>
             </div>
             <div class="col-lg-8">
